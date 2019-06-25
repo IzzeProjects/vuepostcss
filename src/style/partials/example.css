@@ -21,6 +21,10 @@
 
 .content__title {
   font-size: 128px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .content__sub-title {
@@ -40,4 +44,8 @@
   flex: 0 0 auto;
   margin-top: 20px;
   text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+}
+
+.content-title__wrapper {
+  height: 150px;
 }
