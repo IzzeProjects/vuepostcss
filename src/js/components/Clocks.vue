@@ -23,7 +23,7 @@
 
             setInterval(() => {
                 this.timer()
-            }, 980)
+            }, 900)
 
         },
         methods: {
