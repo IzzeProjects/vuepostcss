@@ -17,10 +17,9 @@
         mounted() {
 
             let date = new Date()
-            this.hours = date.getHours()
-            this.minutes = date.getMinutes()
-            let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-            this.seconds = seconds
+            this.hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+            this.minutes =  date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+            this.seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
 
             setInterval(() => {
                 this.timer()
@@ -30,10 +29,9 @@
         methods: {
             timer() {
                 let date = new Date()
-                this.hours = date.getHours()
-                this.minutes = date.getMinutes()
-                let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-                this.seconds = seconds
+                this.hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+                this.minutes =  date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+                this.seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
             }
         }
     }

@@ -1,6 +1,6 @@
 @import "../../node_modules/normalize.css/normalize.css";
-@import url('https://fonts.googleapis.com/css?family=Exo:300,400,500,600,700');
 @import "partials/example.css";
+@import "partials/background.css";
 
 html {
   font-family: 'Montserrat', sans-serif;

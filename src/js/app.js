@@ -2,15 +2,15 @@
 
 import {main} from './moduels'
 import Vue from 'vue'
-import VueCarousel from 'vue-carousel'
 import Clocks from './components/Clocks.vue'
+import BackgroundSlider from './components/BackgroundSlider.vue'
 
 window.onload = () => {
     main()
 }
 
-Vue.use(VueCarousel);
 Vue.component('clocks', Clocks);
+Vue.component('bg-slider', BackgroundSlider);
 
 const app = new Vue({
     el: '#app'
