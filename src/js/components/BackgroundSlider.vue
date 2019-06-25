@@ -1,6 +1,7 @@
 <template>
     <div>
         <carousel :per-page="1"
+                  :mouseDrag="false"
                   :autoplay="true"
                   :autoplayTimeout="3000"
                   :loop="true"
