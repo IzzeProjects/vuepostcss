@@ -1,14 +1,14 @@
 {
   "name": "collector",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.*",
     "@babel/plugin-transform-runtime": "^7.*",
-    "@babel/polyfill": "^7.*",
     "@babel/preset-env": "^7.*",
+    "@babel/runtime": "^7.*",
     "babel-loader": "^8.*",
     "browser-sync": "^2.*",
     "css-loader": "^2.*",
@@ -16,29 +16,17 @@
     "eslint": "^5.*",
     "gulp": "^4.*",
     "gulp-autoprefixer": "^6.*",
-    "gulp-babel": "^8.*",
-    "gulp-clean": "^0.*",
     "gulp-clean-css": "^4.*",
-    "gulp-cli": "^2.*",
-    "gulp-if": "^2.*",
-    "gulp-imagemin": "^5.*",
-    "gulp-jshint": "^2.*",
-    "gulp-livereload": "^4.*",
     "gulp-postcss": "^8.*",
-    "gulp-rigger": "^0.*",
-    "gulp-sass": "^4.*",
-    "gulp-server-io": "^1.*",
     "gulp-sourcemaps": "^2.*",
     "gulp-stylelint": "^8.*",
     "gulp-twig": "^1.*",
     "gulp-uglify": "^3.*",
     "gulp-watch": "^5.*",
-    "imagemin-pngquant": "^7.*",
-    "jquery": "^3.*",
-    "jshint": "^2.*",
     "normalize.css": "^8.*",
     "postcss-loader": "^3.*",
     "postcss-nested": "^4.*",
+    "regenerator-runtime": "^0.*",
     "rimraf": "^2.*",
     "style-loader": "^0.*",
     "stylelint": "^9.*",
@@ -55,8 +43,8 @@
     "dev": "gulp dev",
     "build": "gulp build"
   },
-  "main": "index.js",
+  "main": "build/js/app.js",
   "devDependencies": {
-    "webpack": "^4.28.4"
+    "webpack": "^4.*"
   }
 }

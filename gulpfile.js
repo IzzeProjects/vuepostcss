@@ -1,20 +1,14 @@
 'use strict';
 
 let gulp = require('gulp'),
-    babel = require('gulp-babel'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
-    sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     cssmin = require('gulp-clean-css'),
-    clean = require('gulp-clean'),
     del = require('del'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync").create(),
-    webpack = require('webpack'),
     webpackStream = require('webpack-stream'),
     postcss = require("gulp-postcss"),
     twig = require('gulp-twig'),
@@ -60,7 +54,7 @@ gulp.task('html:build', function (cb) {
 gulp.task('js:dev', function () {
     return gulp.src(path.src.js)
         .pipe(webpackStream({
-            entry: ["@babel/polyfill", "./src/js/app.js"],
+            entry: ["regenerator-runtime/runtime", "./src/js/app.js"],
             mode: 'development',
             output: {
                 filename: 'app.js',
@@ -88,7 +82,7 @@ gulp.task('js:dev', function () {
                             'vue-style-loader',
                             {
                                 loader: 'css-loader',
-                                options: { importLoaders: 1 }
+                                options: {importLoaders: 1}
                             },
                             'postcss-loader'
                         ]
@@ -107,8 +101,49 @@ gulp.task('js:dev', function () {
 
 gulp.task('js:build', function () {
     return gulp.src(path.src.js)
-        .pipe(webpackStream())
+        .pipe(webpackStream({
+            entry: ["regenerator-runtime/runtime", "./src/js/app.js"],
+            mode: 'production',
+            output: {
+                filename: 'app.js',
+            },
+            resolve: {
+                alias: {
+                    'vue$': 'vue/dist/vue.esm.js'
+                },
+                extensions: ['*', '.js', '.vue', '.json']
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.(vue)$/,
+                        loader: 'vue-loader'
+                    },
+                    {
+                        test: /\.(js)$/,
+                        exclude: /(node_modules)/,
+                        loader: 'babel-loader',
+                    },
+                    {
+                        test: /\.(postcss|css)$/,
+                        use: [
+                            'vue-style-loader',
+                            {
+                                loader: 'css-loader',
+                                options: {importLoaders: 1}
+                            },
+                            'postcss-loader'
+                        ]
+                    }
+
+                ]
+            },
+            plugins: [
+                new VueLoaderPlugin()
+            ]
+        }))
         .pipe(sourcemaps.init())
+        .pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js))
 });
@@ -127,12 +162,6 @@ gulp.task('style:build', function () {
 gulp.task('image:build', function () {
     del(['build/img/**/*']);
     return gulp.src(path.src.img)
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()],
-            interlaced: true
-        }))
         .pipe(gulp.dest(path.build.img))
         .pipe(reload({stream: true}));
 });
