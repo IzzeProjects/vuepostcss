@@ -47,5 +47,6 @@
 }
 
 .content-title__wrapper {
+  text-shadow: 0 0 20px rgba(10,175,230,1), 0 0 20px rgba(10,175,230,0);
   height: 150px;
 }
