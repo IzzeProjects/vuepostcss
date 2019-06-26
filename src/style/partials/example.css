@@ -39,6 +39,11 @@
   border-radius: 5px;
 }
 
+.clocks-wrap {
+  display: flex;
+  width: 325px;
+}
+
 .content-clocks {
   font-size: 86px;
   flex: 0 0 auto;
