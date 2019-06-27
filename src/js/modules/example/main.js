@@ -1,4 +1,4 @@
-let exampleModule = function () {
+let exampleModule =  () => {
     console.log('Example Module');
 }
 
