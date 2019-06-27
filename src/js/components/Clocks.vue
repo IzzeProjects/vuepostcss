@@ -49,7 +49,7 @@
 
 <style scoped>
     .slide-fade-enter-active {
-        transition: all 1.1s ease-out;
+        transition: all 1s ease-out;
     }
 
     .slide-fade-enter {
