@@ -19,4 +19,5 @@ div.background__image {
   height: 100%;
   left: 0;
   background-repeat: no-repeat;
+  background-size: cover;
 }

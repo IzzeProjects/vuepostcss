@@ -1,7 +1,7 @@
 {
-  "name": "collector",
+  "name": "vuehtmlpostcss",
   "version": "1.5.0",
-  "description": "",
+  "description": "Vue HTML PostCSS",
   "author": "Anatoliy Vasilev",
   "license": "MIT",
   "dependencies": {
@@ -9,6 +9,7 @@
     "@babel/plugin-transform-runtime": "^7.*",
     "@babel/preset-env": "^7.*",
     "@babel/runtime": "^7.*",
+    "autoprefixer": "^9.*",
     "babel-loader": "^8.*",
     "browser-sync": "^2.*",
     "css-loader": "^2.*",
@@ -24,6 +25,8 @@
     "gulp-uglify": "^3.*",
     "gulp-watch": "^5.*",
     "normalize.css": "^8.*",
+    "postcss-assets": "^5.*",
+    "postcss-load-config": "^2.*",
     "postcss-loader": "^3.*",
     "postcss-nested": "^4.*",
     "regenerator-runtime": "^0.*",

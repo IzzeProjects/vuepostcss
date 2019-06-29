@@ -3,6 +3,7 @@
 let gulp = require('gulp'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
+    autoprefixer = require('autoprefixer'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
     cssmin = require('gulp-clean-css'),
@@ -11,10 +12,11 @@ let gulp = require('gulp'),
     browserSync = require("browser-sync").create(),
     webpackStream = require('webpack-stream'),
     postcss = require("gulp-postcss"),
+    assets = require('postcss-assets'),
     twig = require('gulp-twig'),
     VueLoaderPlugin = require('vue-loader/lib/plugin'),
     reload = browserSync.reload;
-var path = {
+let path = {
     build: {
         html: 'build/',
         js: 'build/js/',
@@ -148,13 +150,29 @@ gulp.task('js:build', function () {
         .pipe(gulp.dest(path.build.js))
 });
 
+gulp.task('style:dev', function () {
+    return gulp.src(path.src.style)
+        .pipe(sourcemaps.init())
+        .pipe(cssmin())
+        .pipe(sourcemaps.write())
+        .pipe(postcss([assets({
+            basePath: "build/",
+            loadPaths: ["**"]
+        }), autoprefixer()]))
+        .pipe(gulp.dest(path.build.css))
+        .pipe(reload({stream: true}));
+});
+
 gulp.task('style:build', function () {
     return gulp.src(path.src.style)
         .pipe(sourcemaps.init())
-        .pipe(postcss())
-        .pipe(prefixer())
         .pipe(cssmin())
         .pipe(sourcemaps.write())
+        .pipe(postcss([assets({
+            basePath: "build/",
+            loadPaths: ["**"],
+            relative: true
+        }), autoprefixer()]))
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 });
@@ -172,9 +190,9 @@ gulp.task('fonts:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('build', gulp.series('clean', 'html:build', 'js:dev', 'style:build', 'image:build', 'fonts:build'));
+gulp.task('dev', gulp.series('clean', 'html:build', 'js:dev', 'image:build',  'style:dev', 'fonts:build'));
 
-gulp.task('prod', gulp.series('clean', 'html:build', 'js:build', 'style:build', 'image:build', 'fonts:build'));
+gulp.task('build', gulp.series('clean', 'html:build', 'js:build','image:build',  'style:build', 'fonts:build'));
 
 gulp.task('reload', function () {
     browserSync.reload();
@@ -182,10 +200,10 @@ gulp.task('reload', function () {
 
 gulp.task('watch', function () {
     watch(path.watch.html, gulp.series('html:build')).on('change', browserSync.reload);
-    watch(path.watch.style, gulp.series('style:build'));
+    watch(path.watch.style, gulp.series('style:dev'));
     watch(path.src.fonts, gulp.series('fonts:build'));
     watch(path.watch.js, gulp.series('js:dev'));
-    watch(path.src.img, gulp.series('image:build')).on('change', browserSync.reload);
+    watch(path.src.img, gulp.series('image:build', 'style:dev')).on('change', browserSync.reload);
 });
 
 gulp.task('server', function () {
@@ -195,6 +213,6 @@ gulp.task('server', function () {
     })
 });
 
-gulp.task('dev', gulp.series('build', gulp.parallel('watch', 'server')));
-gulp.task('build', gulp.series('prod'));
+gulp.task('dev', gulp.series('dev', gulp.parallel('watch', 'server')));
+gulp.task('build', gulp.series('build'));
 
