@@ -2,7 +2,6 @@
 
 let gulp = require('gulp'),
     watch = require('gulp-watch'),
-    prefixer = require('gulp-autoprefixer'),
     autoprefixer = require('autoprefixer'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
