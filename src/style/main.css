@@ -3,6 +3,11 @@
 @import "partials/background.css";
 @import "partials/flip.css";
 
+@font-face {
+  font-family: chiller;
+  src: url("../fonts/CHILLER.TTF");
+}
+
 html {
   font-family: 'Montserrat', sans-serif;
 }

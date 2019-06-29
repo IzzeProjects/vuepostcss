@@ -34,19 +34,19 @@
         mounted() {
             this.images = [
                 {
-                    "link": "/img/background0.jpg"
+                    "link": "img/background0.jpg"
                 },
                 {
-                    "link": "/img/background1.jpg"
+                    "link": "img/background1.jpg"
                 },
                 {
-                    "link": "/img/background2.jpg"
+                    "link": "img/background2.jpg"
                 },
                 {
-                    "link": "/img/background3.jpg"
+                    "link": "img/background3.jpg"
                 },
                 {
-                    "link": "/img/background4.jpg"
+                    "link": "img/background4.jpg"
                 }
             ]
         }
