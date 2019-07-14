@@ -3,4 +3,4 @@
 
 - yarn install - установка пакетов.
 - yarn dev - сервер разработки.
-- yarn build - сборка в продакшн.
+- yarn build - сборка.
