@@ -3,7 +3,6 @@
 let gulp = require('gulp'),
     watch = require('gulp-watch'),
     autoprefixer = require('autoprefixer'),
-    uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
     cssmin = require('gulp-clean-css'),
     del = require('del'),
@@ -15,6 +14,7 @@ let gulp = require('gulp'),
     twig = require('gulp-twig'),
     VueLoaderPlugin = require('vue-loader/lib/plugin'),
     reload = browserSync.reload;
+
 let path = {
     build: {
         html: 'build/',
