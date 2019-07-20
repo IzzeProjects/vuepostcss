@@ -143,9 +143,6 @@ gulp.task('js:build', function () {
                 new VueLoaderPlugin()
             ]
         }))
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js))
 });
 
@@ -164,9 +161,7 @@ gulp.task('style:dev', function () {
 
 gulp.task('style:build', function () {
     return gulp.src(path.src.style)
-        .pipe(sourcemaps.init())
         .pipe(cssmin())
-        .pipe(sourcemaps.write())
         .pipe(postcss([assets({
             basePath: "build/",
             loadPaths: ["**"],
