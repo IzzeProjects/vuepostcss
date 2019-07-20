@@ -105,6 +105,9 @@ gulp.task('js:build', function () {
         .pipe(webpackStream({
             entry: ["regenerator-runtime/runtime", "./src/js/app.js"],
             mode: 'production',
+            stats: {
+                warnings: false
+            },
             output: {
                 filename: 'app.js',
             },
