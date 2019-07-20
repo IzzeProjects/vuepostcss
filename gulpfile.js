@@ -187,9 +187,9 @@ gulp.task('fonts:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('dev', gulp.series('clean', 'html:build', 'js:dev', 'image:build',  'style:dev', 'fonts:build'));
+gulp.task('dev', gulp.series('clean', 'html:build', 'fonts:build', 'js:dev', 'image:build', 'style:dev'));
 
-gulp.task('build', gulp.series('clean', 'html:build', 'js:build','image:build',  'style:build', 'fonts:build'));
+gulp.task('build', gulp.series('clean', 'html:build', 'fonts:build', 'js:build', 'image:build', 'style:build'));
 
 gulp.task('reload', function () {
     browserSync.reload();

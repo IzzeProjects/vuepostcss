@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: chiller;
-  src: url("../fonts/CHILLER.TTF");
+  src: resolve("CHILLER.TTF");
 }
 
 html {
